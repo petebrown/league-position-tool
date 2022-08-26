@@ -1,0 +1,34 @@
+* {
+    font-family: monospace;
+    text-align: center;
+  }
+  
+p, select, button {
+    font-size: 1.5rem;
+  }
+  
+button, select {
+    padding: 5px 8px;
+  }
+  
+body {
+    background: skyblue;
+  }
+  
+.hide {
+    display: none;
+  }
+  
+svg {
+    background: whitesmoke;
+  }
+
+.line {
+    stroke: navy;
+    fill-opacity: 0;
+  }
+
+.avPosition {
+    stroke: darkgrey;
+    stroke-dasharray: 10px;
+  }

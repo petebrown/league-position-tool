@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Season progress tool</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+	<p>Select a season</p>
+	<select id ="season"> <option disabled selected>Select a season</option>
+	</select>
+
+	<button type="button" id="result">Display chart</button>
+
+    <div class="season-chart">
+		<svg class="hide"></svg>
+		<div class="season-overview hide">
+			<p>Season: <span id="season-years"></span>. 
+			League Tier: <span id="league-tier"></span>. 
+			<span id="final-position"></span></p>
+			<p>Highest position: <span id="highest-position"></span>. 
+			Lowest position: <span id="lowest-position"></span>. 
+			Average position: <span id="average-position"></span></p>
+			<p><span id="manager-phrase"></span>.</p>
+		</div>
+	</div>
+	<script src="https://d3js.org/d3.v7.min.js"></script>
+	<script src="./scripts/main.js"></script>
+</body>
+</html>
