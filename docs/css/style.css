@@ -32,3 +32,15 @@ svg {
     stroke: darkgrey;
     stroke-dasharray: 10px;
   }
+
+@media screen and (min-width: 900px) {
+  svg {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 899px) {
+  svg {
+    width: 100%;
+  }
+}

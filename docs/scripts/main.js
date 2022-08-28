@@ -87,7 +87,6 @@ d3.csv("./input/results_mini.csv", rowConverter)
 			//Define axes
 			xAxis = d3.axisBottom()
 				.scale(xScale)
-				// .ticks(final_game_no / 5)
 				.tickValues(xTickList)
 				.tickFormat(d3.format("d"));
 
@@ -102,8 +101,10 @@ d3.csv("./input/results_mini.csv", rowConverter)
 
 			var svg = d3.select(".season-chart")
 				.append("svg")
-				.attr("width", w)
-				.attr("height", h);
+				// .attr("width", w)
+				// .attr("height", h);
+				.attr("viewBox", `0 0 1000 500`)
+				.attr("preserveAspectRatio", "xMidYMid meet")
 
 			//CREATE AXES
 			// Create x-axis
