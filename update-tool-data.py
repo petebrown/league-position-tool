@@ -95,7 +95,7 @@ else:
     updates_df = updates_df[["date", "pos", "ranking", "team", "pld", "w", "d", "l", "gf", "ga", "gd", "g_av", "pts"]]
 
     trfc = updates_df[updates_df.team == 'Tranmere Rovers'].drop(["pos", "team"], axis=1).rename(columns = {"date": "game_date"})
-    results = pd.read_csv("./update-results/data/results_df.csv", parse_dates=["game_date"])
+    results = pd.read_csv("./latest-results/data/results_df.csv", parse_dates=["game_date"])
     new_results = results.merge(trfc, on="game_date")
     new_results = new_results.drop(['home_team',
         'away_team',
@@ -107,10 +107,8 @@ else:
         'game_type'], axis=1)
     new_results_mini = new_results[['season', 'competition', 'league_tier', 'ssn_comp_game_no', 'ranking', 'pld', 'pts', 'manager']]
 
-    results_mini = pd.read_csv("./docs/input/results_mini.csv")
-    updated_results_mini = pd.concat([new_results_mini, results_mini])
+    updated_results_mini = pd.concat([new_results_mini, current_df])
 
     updated_results_mini.to_csv("./docs/input/results_mini.csv", index=False)
-    #updated_results_mini.to_csv("./scripts/output/results_mini.csv", index=False)
-        
+
 driver.quit()

@@ -1,0 +1,3 @@
+[submodule "latest-results"]
+	path = latest-results
+	url = https://github.com/petebrown/update-results
