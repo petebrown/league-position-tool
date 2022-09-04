@@ -1,7 +1,7 @@
 // Set the width and height of the svg canvas
 var w = 1000
 var h = 500;
-var padding = 30;
+var padding = 37;
 
 //Function for converting CSV values from strings to integers
 var rowConverter = function(d) {
@@ -53,11 +53,11 @@ d3.csv("./input/results_mini.csv", rowConverter)
 			var final_game = season_data.filter((d) => d.gameNo == final_game_no);
 
 			if (selected_season == '2019/20') {
-				n_teams = 23;
+				var n_teams = 23;
 			} else if (selected_season == '2022/23') {
-				n_teams = 24;
+				var n_teams = 24;
 			} else {
-				n_teams = (final_game[0].gamesPlayed / 2) + 1;
+				var n_teams = (final_game[0].gamesPlayed / 2) + 1;
 			};
 
 			yTickList = [];
@@ -101,8 +101,6 @@ d3.csv("./input/results_mini.csv", rowConverter)
 
 			var svg = d3.select(".season-chart")
 				.append("svg")
-				// .attr("width", w)
-				// .attr("height", h);
 				.attr("viewBox", `0 0 1000 500`)
 				.attr("preserveAspectRatio", "xMidYMid meet")
 
@@ -113,11 +111,26 @@ d3.csv("./input/results_mini.csv", rowConverter)
 				.attr("transform", "translate(0," + (h - padding) + ")")
 				.call(xAxis);
 
+			 // text label for the x axis
+			svg.append("text")
+				.attr("class", "axis-text")
+				.attr("transform", "translate(" + (w / 2) + " ," + (h - 2) + ")")
+				.text("Game number");
+
 			// Create y-axis
 			svg.append("g")
 				.attr("class", "axis")
 				.attr("transform", "translate(" + padding + ",0)")
 				.call(yAxis);
+
+			// text label for the y axis
+			svg.append("text")
+				.attr("class", "axis-text")
+				.attr("transform", "rotate(-90)")
+				.attr("y", "1")
+				.attr("x", 0 - (h / 2))
+				.attr("dy", "1em")
+				.text("League position");
 
 			// Calculate average league finish since 1958
 			var avPos = d3.mean(season_data, function(d) {return d.leaguePosition; });
@@ -161,24 +174,32 @@ d3.csv("./input/results_mini.csv", rowConverter)
 			var average_position = d3.mean(season_data, function(d) {return d.leaguePosition; }).toFixed(1);
 
 			if (nManagers == 1) {
-				managerPhrase = "Manager: " + managers
+				var managerPhrase1 = "Manager: "
+				var managerPhrase2 = managers
 			} else {
-				managerPhrase = "Managers: " + managers.reverse().join(", ")
+				var managerPhrase1 = "Managers: "
+				var managerPhrase2 = managers.reverse().join(", ")
 			}
 
 			if (selected_season == "2022/23") {
-				final_position_phrase = "Current Position: " + final_position + "/24"
+				var final_position_phrase1 = "Current Position: "
+				var final_position_phrase2 = final_position + "/24"
 			} else {
-				final_position_phrase = "Final Position: " + final_position + '/' + n_teams
+				var final_position_phrase1 = "Final Position: "
+				var final_position_phrase2 = final_position + '/' + n_teams
 			}
 			
 			d3.select("#league-tier")
 				.join("span")
 				.text(league_tier + " (" + competition + ")");
 			
-			d3.select("#final-position")
+			d3.select("#final-position-1")
 				.join("span")
-				.text(final_position_phrase);
+				.text(final_position_phrase1);
+			
+			d3.select("#final-position-2")
+				.join("span")
+				.text(final_position_phrase2);
 			
 			d3.select("#lowest-position")
 				.join("span")
@@ -192,9 +213,15 @@ d3.csv("./input/results_mini.csv", rowConverter)
 				.join("span")
 				.text(average_position);
 
-			d3.select("#manager-phrase")
+			d3.select("#manager-phrase-1")
 				.join("span")
-				.text(managerPhrase)
+				.attr("class", "bold")
+				.text(managerPhrase1)
+
+			d3.select("#manager-phrase-2")
+				.join("span")
+				.text(managerPhrase2)
+				
 		})
     }
 );

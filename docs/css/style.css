@@ -1,11 +1,10 @@
 * {
-    font-family: monospace;
     text-align: center;
   }
-  
-p, select, button {
-    font-size: 1.5rem;
-  }
+
+button {
+  font-size: 0.75rem;
+}
   
 button, select {
     padding: 5px 8px;
@@ -14,7 +13,12 @@ button, select {
 body {
     background: skyblue;
   }
-  
+
+.season-overview {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
 .hide {
     display: none;
   }
@@ -43,4 +47,10 @@ svg {
   svg {
     width: 100%;
   }
+}
+
+svg text.axis-text {
+  font-size: x-small;
+  text-anchor: middle;
+  fill: slategray;
 }
