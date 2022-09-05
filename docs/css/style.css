@@ -54,3 +54,7 @@ svg text.axis-text {
   text-anchor: middle;
   fill: slategray;
 }
+
+.selector-text {
+  padding-bottom: 0.75rem;
+}
