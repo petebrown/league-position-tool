@@ -1,4 +1,5 @@
-import undetected_chromedriver as uc
+# import undetected_chromedriver as uc
+import undetected_chromedriver.v2 as uc
 import pandas as pd
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.core.utils import ChromeType
@@ -20,7 +21,7 @@ options = [
 for option in options:
     chrome_options.add_argument(option)
 
-driver = uc.Chrome(service=chrome_service, options=chrome_options)
+driver = uc.Chrome(service=chrome_service, options=chrome_options, version_main=104)
 
 # Read in the current CSV and find the game number of the latest game it contains
 current_df = pd.read_csv("./docs/input/results_mini.csv")
