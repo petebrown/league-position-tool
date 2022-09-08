@@ -1,12 +1,11 @@
-# import undetected_chromedriver as uc
-import undetected_chromedriver.v2 as uc
+import undetected_chromedriver as uc
 import pandas as pd
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.core.utils import ChromeType
 from selenium.webdriver.chrome.service import Service
 import logging
 
-chrome_service = Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install())
+chrome_service = Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM, version="105.0.5195.52").install())
 
 chrome_options = uc.ChromeOptions()
 options = [
