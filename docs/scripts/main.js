@@ -1,10 +1,10 @@
 // Set the width and height of the svg canvas
-var w = 1000
-var h = 500;
-var padding = 37;
+let w = 1000
+let h = 500;
+let padding = 37;
 
 //Function for converting CSV values from strings to integers
-var rowConverter = function(d) {
+let rowConverter = function(d) {
 	return {
 		season: d.season,
 		leagueTier: parseInt(d.league_tier),
@@ -22,7 +22,7 @@ d3.csv("./input/results_mini.csv", rowConverter)
 	.then((data) => {
 
     // Get the list of seasons
-    var season_list = data.filter((seasons) => seasons.gameNo == 1).map((seasons) => seasons.season)
+    let season_list = data.filter((seasons) => seasons.gameNo == 1).map((seasons) => seasons.season)
 
 	// Populate drop-down with list of seasons
 	d3.select("#season")
@@ -41,43 +41,43 @@ d3.csv("./input/results_mini.csv", rowConverter)
 			
 			d3.select(".season-chart svg").remove();
 
-			var selected_season = d3.select("#season").node().value;
+			let selected_season = d3.select("#season").node().value;
 
-			var season_data = data.filter((seasons) => seasons.season == selected_season);
+			let season_data = data.filter((seasons) => seasons.season == selected_season);
 
-			var managers = new Set(season_data.map(d => d.manager));
-			var managers = Array.from(managers)
-			var nManagers = managers.length;
+			let managers = new Set(season_data.map(d => d.manager));
+			let managersArray = Array.from(managers);
+			let nManagers = managersArray.length;
 
-			var final_game_no = d3.max(season_data, function (d) { return d.gameNo });
-			var final_game = season_data.filter((d) => d.gameNo == final_game_no);
+			let final_game_no = d3.max(season_data, function (d) { return d.gameNo });
+			let final_game = season_data.filter((d) => d.gameNo == final_game_no);
 
 			if (selected_season == '2019/20') {
-				var n_teams = 23;
+				n_teams = 23;
 			} else if (selected_season == '2022/23') {
-				var n_teams = 24;
+				n_teams = 24;
 			} else {
-				var n_teams = (final_game[0].gamesPlayed / 2) + 1;
+				n_teams = (final_game[0].gamesPlayed / 2) + 1;
 			};
 
 			yTickList = [];
-			for (var y_counter = 1; y_counter <= n_teams; ++y_counter) {
+			for (let y_counter = 1; y_counter <= n_teams; ++y_counter) {
 				yTickList.push(y_counter)
 			  };
 
 			xTickList = [];
-			for (var x_counter = 2; x_counter <= final_game_no; x_counter += 2) {
+			for (let x_counter = 2; x_counter <= final_game_no; x_counter += 2) {
 				xTickList.push(x_counter)
 			  };
 
-			xScale = d3.scaleLinear()
+			let xScale = d3.scaleLinear()
 				.domain([
 					d3.min(season_data, function (d) { return d.gameNo; }) - 1,
 					d3.max(season_data, function (d) { return d.gameNo; }) + 1,
 				])
 				.range([padding, w]);
 			
-			yScale = d3.scaleLinear()
+			let yScale = d3.scaleLinear()
 				.domain([
 					n_teams + 1,
 					0
@@ -85,21 +85,21 @@ d3.csv("./input/results_mini.csv", rowConverter)
 			   .range([h - padding, 0]);
 			   
 			//Define axes
-			xAxis = d3.axisBottom()
+			let xAxis = d3.axisBottom()
 				.scale(xScale)
 				.tickValues(xTickList)
 				.tickFormat(d3.format("d"));
 
 			//Define Y axis
-			yAxis = d3.axisLeft()
+			let yAxis = d3.axisLeft()
 				.scale(yScale)
 				.tickValues(yTickList);
 
-			var line = d3.line()
+			let line = d3.line()
 				.x(function(d) { return xScale(d.gameNo); })
 				.y(function(d) { return yScale(d.leaguePosition); });
 
-			var svg = d3.select(".season-chart")
+			let svg = d3.select(".season-chart")
 				.append("svg")
 				.attr("viewBox", `0 0 1000 500`)
 				.attr("preserveAspectRatio", "xMidYMid meet")
@@ -133,7 +133,7 @@ d3.csv("./input/results_mini.csv", rowConverter)
 				.text("League position");
 
 			// Calculate average league finish since 1958
-			var avPos = d3.mean(season_data, function(d) {return d.leaguePosition; });
+			let avPos = d3.mean(season_data, function(d) {return d.leaguePosition; });
 
 			// Add line for average position since 1958
 			svg.append("line")
@@ -166,27 +166,31 @@ d3.csv("./input/results_mini.csv", rowConverter)
 				.join("span")
 				.text(selected_season);
 
-			var league_tier = season_data[0].leagueTier;
-			var competition = d3.min(season_data, function (d) { return d.competition; });
-			var final_position = final_game[0].leaguePosition;
-			var lowest_pos = d3.max(season_data, function (d) { return d.leaguePosition; });
-			var highest_pos = d3.min(season_data, function (d) { return d.leaguePosition; });
-			var average_position = d3.mean(season_data, function(d) {return d.leaguePosition; }).toFixed(1);
+			let league_tier = season_data[0].leagueTier;
+			let competition = d3.min(season_data, function (d) { return d.competition; });
+			let final_position = final_game[0].leaguePosition;
+			let lowest_pos = d3.max(season_data, function (d) { return d.leaguePosition; });
+			let highest_pos = d3.min(season_data, function (d) { return d.leaguePosition; });
+			let average_position = d3.mean(season_data, function(d) {return d.leaguePosition; }).toFixed(1);
 
+			let managerPhrase1;
+			let managerPhrase2;
 			if (nManagers == 1) {
-				var managerPhrase1 = "Manager: "
-				var managerPhrase2 = managers
+				managerPhrase1 = "Manager: "
+				managerPhrase2 = managersArray
 			} else {
-				var managerPhrase1 = "Managers: "
-				var managerPhrase2 = managers.reverse().join(", ")
+				managerPhrase1 = "Managers: "
+				managerPhrase2 = managersArray.reverse().join(", ")
 			}
 
+			let final_position_phrase1;
+			let final_position_phrase2;
 			if (selected_season == "2022/23") {
-				var final_position_phrase1 = "Current Position: "
-				var final_position_phrase2 = final_position + "/24"
+				final_position_phrase1 = "Current Position: "
+				final_position_phrase2 = final_position + "/24"
 			} else {
-				var final_position_phrase1 = "Final Position: "
-				var final_position_phrase2 = final_position + '/' + n_teams
+				final_position_phrase1 = "Final Position: "
+				final_position_phrase2 = final_position + '/' + n_teams
 			}
 			
 			d3.select("#league-tier")
