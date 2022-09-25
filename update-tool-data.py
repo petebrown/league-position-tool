@@ -108,6 +108,7 @@ else:
     new_results_mini = new_results[['season', 'competition', 'league_tier', 'ssn_comp_game_no', 'ranking', 'pld', 'pts', 'manager']]
 
     updated_results_mini = pd.concat([new_results_mini, current_df])
+    updated_results_mini = updated_results_mini.drop_duplicates(ignore_index=True)
 
     updated_results_mini.to_csv("./docs/input/results_mini.csv", index=False)
 
