@@ -22,7 +22,7 @@ d3.csv("./input/results_mini.csv", rowConverter)
 	.then((data) => {
 
     // Get the list of seasons
-    let season_list = data.filter((seasons) => seasons.gameNo == 1).map((seasons) => seasons.season)
+    let season_list = data.filter((seasons) => seasons.gameNo == 1).map((seasons) => seasons.season);
 
 	// Populate drop-down with list of seasons
 	d3.select("#season")
@@ -60,12 +60,12 @@ d3.csv("./input/results_mini.csv", rowConverter)
 				n_teams = (final_game[0].gamesPlayed / 2) + 1;
 			};
 
-			yTickList = [];
+			let yTickList = [];
 			for (let y_counter = 1; y_counter <= n_teams; ++y_counter) {
 				yTickList.push(y_counter)
 			  };
 
-			xTickList = [];
+			let xTickList = [];
 			for (let x_counter = 2; x_counter <= final_game_no; x_counter += 2) {
 				xTickList.push(x_counter)
 			  };
@@ -162,6 +162,7 @@ d3.csv("./input/results_mini.csv", rowConverter)
 				})
 				.attr("r", 2.5);
 
+			// Display season-specific text for season_overview div
 			d3.select("#season-years")
 				.join("span")
 				.text(selected_season);
