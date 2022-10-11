@@ -60,6 +60,8 @@ d3.csv("./input/results_mini.csv", rowConverter)
 				n_teams = (final_game[0].gamesPlayed / 2) + 1;
 			};
 
+			let totalPoints = d3.max(season_data, function (d) { return d.points });
+			
 			let yTickList = [];
 			for (let y_counter = 1; y_counter <= n_teams; ++y_counter) {
 				yTickList.push(y_counter)
@@ -173,6 +175,7 @@ d3.csv("./input/results_mini.csv", rowConverter)
 			let lowest_pos = d3.max(season_data, function (d) { return d.leaguePosition; });
 			let highest_pos = d3.min(season_data, function (d) { return d.leaguePosition; });
 			let average_position = d3.mean(season_data, function(d) {return d.leaguePosition; }).toFixed(1);
+			let avPoints = (totalPoints / final_game_no).toFixed(2);
 
 			let managerPhrase1;
 			let managerPhrase2;
@@ -217,6 +220,14 @@ d3.csv("./input/results_mini.csv", rowConverter)
 			d3.select("#average-position")
 				.join("span")
 				.text(average_position);
+
+			d3.select("#final-points")
+				.join("span")
+				.text(totalPoints)
+
+			d3.select("#average-points")
+				.join("#span")
+				.text(avPoints)
 
 			d3.select("#manager-phrase-1")
 				.join("span")
