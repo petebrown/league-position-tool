@@ -28,7 +28,7 @@ jobs:
         run: sudo apt purge google-chrome-stable
       
       - name: Install all necessary packages
-        run: pip install lxml pandas webdriver-manager selenium undetected_chromedriver
+        run: pip install lxml pandas packaging webdriver-manager selenium undetected_chromedriver
 
       - name: Run the scraping script
         run: python update-tool-data.py
