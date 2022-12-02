@@ -10,11 +10,11 @@ jobs:
       - name: Check out this repo
         uses: actions/checkout@v3
         
-      - name: Checkout results repo
-        uses: actions/checkout@v3
-        with:
-          token: ${{ secrets.GH_PAT }}
-          submodules: recursive
+      # - name: Checkout results repo
+      #   uses: actions/checkout@v3
+      #   with:
+      #     token: ${{ secrets.GH_PAT }}
+      #     submodules: recursive
           
       - name: Set up Python
         uses: actions/setup-python@v4
