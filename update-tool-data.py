@@ -95,7 +95,7 @@ else:
     updates_df = updates_df[["date", "pos", "ranking", "team", "pld", "w", "d", "l", "gf", "ga", "gd", "g_av", "pts"]]
 
     trfc = updates_df[updates_df.team == 'Tranmere Rovers'].drop(["pos", "team"], axis=1).rename(columns = {"date": "game_date"})
-    results = pd.read_csv("./latest-results/data/results_df.csv", parse_dates=["game_date"])
+    results = pd.read_csv("https://raw.githubusercontent.com/petebrown/update-results/main/data/results_df.csv", parse_dates=["game_date"])
     new_results = results.merge(trfc, on="game_date")
     new_results = new_results.drop(['home_team',
         'away_team',
