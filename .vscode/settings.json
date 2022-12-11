@@ -1,6 +1,0 @@
-{
-    "github-actions.workflows.pinned.workflows": [
-        ".github/workflows/main.yml",
-        "latest-results/.github/workflows/update-results.yml"
-    ]
-}
