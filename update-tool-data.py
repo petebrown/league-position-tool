@@ -5,7 +5,7 @@ from webdriver_manager.core.utils import ChromeType
 from selenium.webdriver.chrome.service import Service
 import logging
 
-chrome_service = Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM, version="107.0.5304.62").install())
+chrome_service = Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM, version="109.0.5414.25").install())
 
 chrome_options = uc.ChromeOptions()
 options = [
@@ -20,7 +20,7 @@ options = [
 for option in options:
     chrome_options.add_argument(option)
 
-driver = uc.Chrome(service=chrome_service, options=chrome_options, version_main=107)
+driver = uc.Chrome(service=chrome_service, options=chrome_options, version_main=108)
 
 # Read in the current CSV and find the game number of the latest game it contains
 current_df = pd.read_csv("./docs/input/results_mini.csv")
