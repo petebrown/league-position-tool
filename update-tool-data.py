@@ -20,7 +20,7 @@ options = [
 for option in options:
     chrome_options.add_argument(option)
 
-driver = uc.Chrome(service=chrome_service, options=chrome_options, version_main=109)
+driver = uc.Chrome(service=chrome_service, options=chrome_options)
 
 # Read in the current CSV and find the game number of the latest game it contains
 current_df = pd.read_csv("./docs/input/results_mini.csv")
