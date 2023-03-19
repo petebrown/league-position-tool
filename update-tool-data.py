@@ -5,7 +5,7 @@ from webdriver_manager.core.utils import ChromeType
 from selenium.webdriver.chrome.service import Service
 import logging
 
-chrome_service = Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install())
+chrome_service = Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM, version="111.0.5563.64").install())
 
 chrome_options = uc.ChromeOptions()
 options = [
