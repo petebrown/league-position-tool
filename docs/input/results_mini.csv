@@ -530,7 +530,7 @@ season,competition,league_tier,ssn_comp_game_no,ranking,pld,pts,manager
 2011/12,League One,3.0,3.0,5.0,3.0,6,Les Parry
 2011/12,League One,3.0,2.0,3.0,2.0,6,Les Parry
 2011/12,League One,3.0,1.0,7.0,1.0,3,Les Parry
-2010/11,League One,3.0,46.0,17.0,46.0,56,Les Parry
+2010/11,League One,3.0,46.0,18.0,46.0,56,Les Parry
 2010/11,League One,3.0,45.0,15.0,45.0,56,Les Parry
 2010/11,League One,3.0,44.0,16.0,44.0,53,Les Parry
 2010/11,League One,3.0,43.0,18.0,43.0,50,Les Parry
@@ -1634,7 +1634,7 @@ season,competition,league_tier,ssn_comp_game_no,ranking,pld,pts,manager
 1987/88,League Division Four,4.0,3.0,23.0,3.0,1,John King
 1987/88,League Division Four,4.0,2.0,24.0,2.0,-2,John King
 1987/88,League Division Four,4.0,1.0,24.0,1.0,-2,John King
-1986/87,League Division Four,4.0,46.0,21.0,46.0,50,John King
+1986/87,League Division Four,4.0,46.0,20.0,46.0,50,John King
 1986/87,League Division Four,4.0,45.0,23.0,45.0,47,John King
 1986/87,League Division Four,4.0,44.0,21.0,44.0,46,John King
 1986/87,League Division Four,4.0,43.0,21.0,43.0,46,John King
@@ -1680,7 +1680,7 @@ season,competition,league_tier,ssn_comp_game_no,ranking,pld,pts,manager
 1986/87,League Division Four,4.0,3.0,3.0,3.0,4,Frank Worthington
 1986/87,League Division Four,4.0,2.0,1.0,2.0,4,Frank Worthington
 1986/87,League Division Four,4.0,1.0,9.0,1.0,1,Frank Worthington
-1985/86,League Division Four,4.0,46.0,17.0,46.0,54,Frank Worthington
+1985/86,League Division Four,4.0,46.0,19.0,46.0,54,Frank Worthington
 1985/86,League Division Four,4.0,45.0,17.0,45.0,54,Frank Worthington
 1985/86,League Division Four,4.0,44.0,14.0,44.0,53,Frank Worthington
 1985/86,League Division Four,4.0,43.0,15.0,43.0,52,Frank Worthington
@@ -1818,7 +1818,7 @@ season,competition,league_tier,ssn_comp_game_no,ranking,pld,pts,manager
 1983/84,League Division Four,4.0,3.0,16.0,3.0,3,Bryan Hamilton
 1983/84,League Division Four,4.0,2.0,17.0,2.0,2,Bryan Hamilton
 1983/84,League Division Four,4.0,1.0,12.0,1.0,1,Bryan Hamilton
-1982/83,League Division Four,4.0,46.0,18.0,46.0,50,Bryan Hamilton
+1982/83,League Division Four,4.0,46.0,19.0,46.0,50,Bryan Hamilton
 1982/83,League Division Four,4.0,45.0,20.0,45.0,49,Bryan Hamilton
 1982/83,League Division Four,4.0,44.0,21.0,44.0,46,Bryan Hamilton
 1982/83,League Division Four,4.0,43.0,20.0,43.0,45,Bryan Hamilton
@@ -2048,7 +2048,7 @@ season,competition,league_tier,ssn_comp_game_no,ranking,pld,pts,manager
 1978/79,League Division Three,3.0,3.0,21.0,3.0,1,John King
 1978/79,League Division Three,3.0,2.0,17.0,2.0,1,John King
 1978/79,League Division Three,3.0,1.0,17.0,1.0,0,John King
-1977/78,League Division Three,3.0,46.0,9.0,46.0,47,John King
+1977/78,League Division Three,3.0,46.0,12.0,46.0,47,John King
 1977/78,League Division Three,3.0,45.0,11.0,45.0,46,John King
 1977/78,League Division Three,3.0,44.0,9.0,44.0,46,John King
 1977/78,League Division Three,3.0,43.0,7.0,43.0,46,John King
@@ -2094,7 +2094,7 @@ season,competition,league_tier,ssn_comp_game_no,ranking,pld,pts,manager
 1977/78,League Division Three,3.0,3.0,2.0,3.0,6,John King
 1977/78,League Division Three,3.0,2.0,5.0,2.0,4,John King
 1977/78,League Division Three,3.0,1.0,6.0,1.0,2,John King
-1976/77,League Division Three,3.0,46.0,13.0,46.0,43,John King
+1976/77,League Division Three,3.0,46.0,14.0,46.0,43,John King
 1976/77,League Division Three,3.0,45.0,11.0,45.0,43,John King
 1976/77,League Division Three,3.0,44.0,11.0,44.0,41,John King
 1976/77,League Division Three,3.0,43.0,13.0,43.0,39,John King
@@ -2232,7 +2232,7 @@ season,competition,league_tier,ssn_comp_game_no,ranking,pld,pts,manager
 1974/75,League Division Three,3.0,3.0,17.0,3.0,2,Ron Yeats
 1974/75,League Division Three,3.0,2.0,23.0,2.0,0,Ron Yeats
 1974/75,League Division Three,3.0,1.0,20.0,1.0,0,Ron Yeats
-1973/74,League Division Three,3.0,46.0,13.0,46.0,45,Ron Yeats
+1973/74,League Division Three,3.0,46.0,16.0,46.0,45,Ron Yeats
 1973/74,League Division Three,3.0,45.0,13.0,45.0,43,Ron Yeats
 1973/74,League Division Three,3.0,44.0,19.0,44.0,41,Ron Yeats
 1973/74,League Division Three,3.0,43.0,19.0,43.0,39,Ron Yeats
@@ -2370,7 +2370,7 @@ season,competition,league_tier,ssn_comp_game_no,ranking,pld,pts,manager
 1971/72,League Division Three,3.0,3.0,9.0,3.0,3,Jackie Wright
 1971/72,League Division Three,3.0,2.0,11.0,2.0,2,Jackie Wright
 1971/72,League Division Three,3.0,1.0,7.0,1.0,2,Jackie Wright
-1970/71,League Division Three,3.0,46.0,16.0,46.0,42,Jackie Wright
+1970/71,League Division Three,3.0,46.0,18.0,46.0,42,Jackie Wright
 1970/71,League Division Three,3.0,45.0,18.0,45.0,40,Jackie Wright
 1970/71,League Division Three,3.0,44.0,18.0,44.0,39,Jackie Wright
 1970/71,League Division Three,3.0,43.0,18.0,43.0,38,Jackie Wright
@@ -2462,7 +2462,7 @@ season,competition,league_tier,ssn_comp_game_no,ranking,pld,pts,manager
 1969/70,League Division Three,3.0,3.0,1.0,3.0,6,Dave Russell
 1969/70,League Division Three,3.0,2.0,1.0,2.0,4,Dave Russell
 1969/70,League Division Three,3.0,1.0,1.0,1.0,2,Dave Russell
-1968/69,League Division Three,3.0,46.0,6.0,46.0,48,Dave Russell
+1968/69,League Division Three,3.0,46.0,7.0,46.0,48,Dave Russell
 1968/69,League Division Three,3.0,45.0,8.0,45.0,46,Dave Russell
 1968/69,League Division Three,3.0,44.0,6.0,44.0,46,Dave Russell
 1968/69,League Division Three,3.0,43.0,6.0,43.0,46,Dave Russell
@@ -2600,7 +2600,7 @@ season,competition,league_tier,ssn_comp_game_no,ranking,pld,pts,manager
 1966/67,League Division Four,4.0,3.0,16.0,3.0,2,Dave Russell
 1966/67,League Division Four,4.0,2.0,16.0,2.0,1,Dave Russell
 1966/67,League Division Four,4.0,1.0,15.0,1.0,1,Dave Russell
-1965/66,League Division Four,4.0,46.0,3.0,46.0,56,Dave Russell
+1965/66,League Division Four,4.0,46.0,5.0,46.0,56,Dave Russell
 1965/66,League Division Four,4.0,45.0,4.0,45.0,54,Dave Russell
 1965/66,League Division Four,4.0,44.0,4.0,44.0,52,Dave Russell
 1965/66,League Division Four,4.0,43.0,5.0,43.0,50,Dave Russell
@@ -2646,7 +2646,7 @@ season,competition,league_tier,ssn_comp_game_no,ranking,pld,pts,manager
 1965/66,League Division Four,4.0,3.0,1.0,3.0,5,Dave Russell
 1965/66,League Division Four,4.0,2.0,3.0,2.0,3,Dave Russell
 1965/66,League Division Four,4.0,1.0,11.0,1.0,1,Dave Russell
-1964/65,League Division Four,4.0,46.0,4.0,46.0,60,Dave Russell
+1964/65,League Division Four,4.0,46.0,5.0,46.0,60,Dave Russell
 1964/65,League Division Four,4.0,45.0,4.0,45.0,60,Dave Russell
 1964/65,League Division Four,4.0,44.0,4.0,44.0,58,Dave Russell
 1964/65,League Division Four,4.0,43.0,3.0,43.0,57,Dave Russell
@@ -2784,7 +2784,7 @@ season,competition,league_tier,ssn_comp_game_no,ranking,pld,pts,manager
 1962/63,League Division Four,4.0,3.0,23.0,3.0,0,Dave Russell
 1962/63,League Division Four,4.0,2.0,22.0,2.0,0,Dave Russell
 1962/63,League Division Four,4.0,1.0,21.0,1.0,0,Dave Russell
-1961/62,League Division Four,4.0,44.0,14.0,44.0,44,Dave Russell
+1961/62,League Division Four,4.0,44.0,15.0,44.0,44,Dave Russell
 1961/62,League Division Four,4.0,43.0,12.0,43.0,44,Dave Russell
 1961/62,League Division Four,4.0,42.0,9.0,42.0,44,Dave Russell
 1961/62,League Division Four,4.0,41.0,13.0,41.0,42,Dave Russell
@@ -2920,7 +2920,7 @@ season,competition,league_tier,ssn_comp_game_no,ranking,pld,pts,manager
 1959/60,League Division Three,3.0,3.0,15.0,3.0,2,Peter Farrell
 1959/60,League Division Three,3.0,2.0,8.0,2.0,2,Peter Farrell
 1959/60,League Division Three,3.0,1.0,1.0,1.0,2,Peter Farrell
-1958/59,League Division Three,3.0,46.0,5.0,46.0,50,Peter Farrell
+1958/59,League Division Three,3.0,46.0,7.0,46.0,50,Peter Farrell
 1958/59,League Division Three,3.0,45.0,5.0,45.0,50,Peter Farrell
 1958/59,League Division Three,3.0,44.0,5.0,44.0,49,Peter Farrell
 1958/59,League Division Three,3.0,43.0,6.0,43.0,47,Peter Farrell
@@ -3104,7 +3104,7 @@ season,competition,league_tier,ssn_comp_game_no,ranking,pld,pts,manager
 1955/56,Division Three (North),3.0,3.0,17.0,3.0,2,Noel Kelly
 1955/56,Division Three (North),3.0,2.0,9.0,2.0,2,Noel Kelly
 1955/56,Division Three (North),3.0,1.0,16.0,1.0,1,Noel Kelly
-1954/55,Division Three (North),3.0,46.0,18.0,46.0,37,Unknown
+1954/55,Division Three (North),3.0,46.0,19.0,46.0,37,Unknown
 1954/55,Division Three (North),3.0,45.0,18.0,45.0,37,Ernest Blackburn
 1954/55,Division Three (North),3.0,44.0,19.0,44.0,35,Ernest Blackburn
 1954/55,Division Three (North),3.0,43.0,19.0,43.0,34,Ernest Blackburn
@@ -3196,7 +3196,7 @@ season,competition,league_tier,ssn_comp_game_no,ranking,pld,pts,manager
 1953/54,Division Three (North),3.0,3.0,19.0,3.0,2,Ernest Blackburn
 1953/54,Division Three (North),3.0,2.0,15.0,2.0,2,Ernest Blackburn
 1953/54,Division Three (North),3.0,1.0,23.0,1.0,0,Ernest Blackburn
-1952/53,Division Three (North),3.0,46.0,12.0,46.0,47,Ernest Blackburn
+1952/53,Division Three (North),3.0,46.0,13.0,46.0,47,Ernest Blackburn
 1952/53,Division Three (North),3.0,45.0,12.0,45.0,47,Ernest Blackburn
 1952/53,Division Three (North),3.0,44.0,13.0,44.0,45,Ernest Blackburn
 1952/53,Division Three (North),3.0,43.0,16.0,43.0,43,Ernest Blackburn
@@ -3242,7 +3242,7 @@ season,competition,league_tier,ssn_comp_game_no,ranking,pld,pts,manager
 1952/53,Division Three (North),3.0,3.0,23.0,3.0,1,Ernest Blackburn
 1952/53,Division Three (North),3.0,2.0,19.0,2.0,1,Ernest Blackburn
 1952/53,Division Three (North),3.0,1.0,12.0,1.0,1,Ernest Blackburn
-1951/52,Division Three (North),3.0,46.0,10.0,46.0,48,Ernest Blackburn
+1951/52,Division Three (North),3.0,46.0,11.0,46.0,48,Ernest Blackburn
 1951/52,Division Three (North),3.0,45.0,11.0,45.0,46,Ernest Blackburn
 1951/52,Division Three (North),3.0,44.0,11.0,44.0,46,Ernest Blackburn
 1951/52,Division Three (North),3.0,43.0,12.0,43.0,44,Ernest Blackburn
@@ -3586,7 +3586,7 @@ season,competition,league_tier,ssn_comp_game_no,ranking,pld,pts,manager
 1937/38,Division Three (North),3.0,3.0,11.0,3.0,3,Jim Knowles
 1937/38,Division Three (North),3.0,2.0,8.0,2.0,2,Jim Knowles
 1937/38,Division Three (North),3.0,1.0,16.0,1.0,0,Jim Knowles
-1936/37,Division Three (North),3.0,42.0,18.0,42.0,33,Jim Knowles
+1936/37,Division Three (North),3.0,42.0,19.0,42.0,33,Jim Knowles
 1936/37,Division Three (North),3.0,41.0,20.0,41.0,31,Jim Knowles
 1936/37,Division Three (North),3.0,40.0,19.0,40.0,31,Jim Knowles
 1936/37,Division Three (North),3.0,39.0,18.0,39.0,31,Jim Knowles
@@ -3670,7 +3670,7 @@ season,competition,league_tier,ssn_comp_game_no,ranking,pld,pts,manager
 1935/36,Division Three (North),3.0,3.0,3.0,3.0,5,Jack Carr
 1935/36,Division Three (North),3.0,2.0,4.0,2.0,3,Jack Carr
 1935/36,Division Three (North),3.0,1.0,12.0,1.0,1,Jack Carr
-1934/35,Division Three (North),3.0,42.0,3.0,42.0,51,Bert Cooke
+1934/35,Division Three (North),3.0,42.0,6.0,42.0,51,Bert Cooke
 1934/35,Division Three (North),3.0,41.0,3.0,41.0,51,Bert Cooke
 1934/35,Division Three (North),3.0,40.0,3.0,40.0,49,Bert Cooke
 1934/35,Division Three (North),3.0,39.0,3.0,39.0,49,Bert Cooke
@@ -3712,7 +3712,7 @@ season,competition,league_tier,ssn_comp_game_no,ranking,pld,pts,manager
 1934/35,Division Three (North),3.0,3.0,4.0,3.0,5,Bert Cooke
 1934/35,Division Three (North),3.0,2.0,1.0,2.0,4,Bert Cooke
 1934/35,Division Three (North),3.0,1.0,4.0,1.0,2,Bert Cooke
-1933/34,Division Three (North),3.0,42.0,8.0,42.0,47,Bert Cooke
+1933/34,Division Three (North),3.0,42.0,7.0,42.0,47,Bert Cooke
 1933/34,Division Three (North),3.0,41.0,7.0,41.0,47,Bert Cooke
 1933/34,Division Three (North),3.0,40.0,7.0,40.0,45,Bert Cooke
 1933/34,Division Three (North),3.0,39.0,7.0,39.0,44,Bert Cooke
@@ -3836,7 +3836,7 @@ season,competition,league_tier,ssn_comp_game_no,ranking,pld,pts,manager
 1931/32,Division Three (North),3.0,3.0,14.0,3.0,2,Bert Cooke
 1931/32,Division Three (North),3.0,2.0,17.0,2.0,0,Bert Cooke
 1931/32,Division Three (North),3.0,1.0,14.0,1.0,0,Bert Cooke
-1930/31,Division Three (North),3.0,42.0,3.0,42.0,54,Bert Cooke
+1930/31,Division Three (North),3.0,42.0,4.0,42.0,54,Bert Cooke
 1930/31,Division Three (North),3.0,41.0,3.0,41.0,54,Bert Cooke
 1930/31,Division Three (North),3.0,40.0,2.0,40.0,54,Bert Cooke
 1930/31,Division Three (North),3.0,39.0,2.0,39.0,54,Bert Cooke
@@ -3878,7 +3878,7 @@ season,competition,league_tier,ssn_comp_game_no,ranking,pld,pts,manager
 1930/31,Division Three (North),3.0,3.0,1.0,3.0,6,Bert Cooke
 1930/31,Division Three (North),3.0,2.0,2.0,2.0,4,Bert Cooke
 1930/31,Division Three (North),3.0,1.0,1.0,1.0,2,Bert Cooke
-1929/30,Division Three (North),3.0,42.0,11.0,42.0,41,Bert Cooke
+1929/30,Division Three (North),3.0,42.0,12.0,42.0,41,Bert Cooke
 1929/30,Division Three (North),3.0,41.0,9.0,41.0,41,Bert Cooke
 1929/30,Division Three (North),3.0,40.0,9.0,40.0,41,Bert Cooke
 1929/30,Division Three (North),3.0,39.0,8.0,39.0,41,Bert Cooke
@@ -4172,7 +4172,7 @@ season,competition,league_tier,ssn_comp_game_no,ranking,pld,pts,manager
 1923/24,Division Three (North),3.0,3.0,6.0,3.0,4,Bert Cooke
 1923/24,Division Three (North),3.0,2.0,4.0,2.0,3,Bert Cooke
 1923/24,Division Three (North),3.0,1.0,4.0,1.0,2,Bert Cooke
-1922/23,Division Three (North),3.0,38.0,15.0,38.0,32,Bert Cooke
+1922/23,Division Three (North),3.0,38.0,16.0,38.0,32,Bert Cooke
 1922/23,Division Three (North),3.0,37.0,14.0,37.0,32,Bert Cooke
 1922/23,Division Three (North),3.0,36.0,15.0,36.0,30,Bert Cooke
 1922/23,Division Three (North),3.0,35.0,14.0,35.0,30,Bert Cooke
