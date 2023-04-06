@@ -1,26 +1,11 @@
-import undetected_chromedriver as uc
+import requests
+from bs4 import BeautifulSoup
 import pandas as pd
-from webdriver_manager.chrome import ChromeDriverManager
-from webdriver_manager.core.utils import ChromeType
-from selenium.webdriver.chrome.service import Service
 import logging
 
-chrome_service = Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM, version="111.0.5563.64").install())
-
-chrome_options = uc.ChromeOptions()
-options = [
-    "--headless",
-    "--disable-gpu",
-    "--window-size=1920,1200",
-    "--ignore-certificate-errors",
-    "--disable-extensions",
-    "--no-sandbox",
-    "--disable-dev-shm-usage"
-]
-for option in options:
-    chrome_options.add_argument(option)
-
-driver = uc.Chrome(service=chrome_service, options=chrome_options)
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36'
+}
 
 # Read in the current CSV and find the game number of the latest game it contains
 current_df = pd.read_csv("./docs/input/results_mini.csv")
@@ -38,7 +23,7 @@ latest_fixture = fixtures[fixtures.game_date <= today].ssn_comp_game_no.max()
 dates_to_get = fixtures[(fixtures.ssn_comp_game_no > latest_game_no) & (fixtures.ssn_comp_game_no <= latest_fixture)].copy()
 
 if dates_to_get.empty:
-    print("No Updates!")
+    print("No updates.")
 else:
     dates_to_get = dates_to_get.sort_values("ssn_comp_game_no", ascending=False)
 
@@ -65,9 +50,9 @@ else:
     # Scrape league table for each date
     for url in update_urls:
         try:    
-            driver.get(url)
+            r = requests.get(url, headers = headers)
 
-            doc = driver.page_source
+            doc = BeautifulSoup(r.text, 'lxml')
             table = pd.read_html(doc)[0]
             df = pd.DataFrame(table)
             df = df[['Pos', 'Team', 'Pld', 'W', 'D', 'L', 'GF', 'GA', 'Pts']]
@@ -111,5 +96,3 @@ else:
     updated_results_mini = updated_results_mini.drop_duplicates(ignore_index=True)
 
     updated_results_mini.to_csv("./docs/input/results_mini.csv", index=False)
-
-driver.quit()
