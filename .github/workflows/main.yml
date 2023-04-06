@@ -18,7 +18,7 @@ jobs:
           python-version: '3.11.0'
       
       - name: Install all necessary packages
-        run: pip install requests beautifulsoup4 lxml pandas
+        run: pip install requests pandas
 
       - name: Run the scraping script
         run: python update-tool-data.py

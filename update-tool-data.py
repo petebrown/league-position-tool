@@ -1,5 +1,4 @@
 import requests
-from bs4 import BeautifulSoup
 import pandas as pd
 import logging
 
@@ -9,7 +8,7 @@ headers = {
 
 # Read in the current CSV and find the game number of the latest game it contains
 current_df = pd.read_csv("./docs/input/results_mini.csv")
-latest_game_no = current_df[(current_df.season == current_df.season.max())].ssn_comp_game_no.max()
+latest_game_no = current_df[(current_df.season == current_df.season.max())].ssn_comp_game_no.min()
 
 # Read in the season's full fixture list
 fixtures = pd.read_csv("./data/fixtures.csv", parse_dates=["game_date"])
@@ -52,8 +51,7 @@ else:
         try:    
             r = requests.get(url, headers = headers)
 
-            doc = BeautifulSoup(r.text, 'lxml')
-            table = pd.read_html(doc)[0]
+            table = pd.read_html(r.text)[0]
             df = pd.DataFrame(table)
             df = df[['Pos', 'Team', 'Pld', 'W', 'D', 'L', 'GF', 'GA', 'Pts']]
             df['index_no'] = df.index + 1
