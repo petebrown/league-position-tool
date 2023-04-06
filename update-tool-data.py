@@ -8,7 +8,7 @@ headers = {
 
 # Read in the current CSV and find the game number of the latest game it contains
 current_df = pd.read_csv("./docs/input/results_mini.csv")
-latest_game_no = current_df[(current_df.season == current_df.season.max())].ssn_comp_game_no.min()
+latest_game_no = current_df[(current_df.season == current_df.season.max())].ssn_comp_game_no.max()
 
 # Read in the season's full fixture list
 fixtures = pd.read_csv("./data/fixtures.csv", parse_dates=["game_date"])
