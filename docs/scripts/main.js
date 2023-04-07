@@ -9,9 +9,8 @@ let rowConverter = function(d) {
 		season: d.season,
 		leagueTier: parseInt(d.league_tier),
 		competition: d.competition,
-		gameNo: parseInt(d.ssn_comp_game_no),
+		gameNo: parseInt(d.pld),
 		leaguePosition: parseInt(d.ranking),
-		gamesPlayed: parseInt(d.pld),
 		points: parseInt(d.pts),
 		manager: d.manager
 	};
@@ -57,7 +56,7 @@ d3.csv("./input/results_mini.csv", rowConverter)
 			} else if (selected_season == '2022/23') {
 				n_teams = 24;
 			} else {
-				n_teams = (final_game[0].gamesPlayed / 2) + 1;
+				n_teams = (final_game[0].gameNo / 2) + 1;
 			};
 
 			let totalPoints = d3.max(season_data, function (d) { return d.points });

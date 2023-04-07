@@ -1,96 +1,176 @@
 import requests
+from bs4 import BeautifulSoup
 import pandas as pd
-import logging
 
-headers = {
-    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36'
-}
+def get_results_df():
+    results_df = pd.read_csv("https://raw.githubusercontent.com/petebrown/update-results/main/data/results_df.csv", parse_dates=["game_date"])
+    return results_df
 
-# Read in the current CSV and find the game number of the latest game it contains
-current_df = pd.read_csv("./docs/input/results_mini.csv")
-latest_game_no = current_df[(current_df.season == current_df.season.max())].ssn_comp_game_no.max()
+def get_max_date_in_df(df):
+    latest_game_date = df.game_date.max()
+    return latest_game_date
 
-# Read in the season's full fixture list
-fixtures = pd.read_csv("./data/fixtures.csv", parse_dates=["game_date"])
-# Get today's date
-today = pd.Timestamp("today")
+def get_html(url):
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36'
+        }
+    r = requests.get(url, headers=headers)
+    html = r.text
+    return html
 
-# Filter the fixture list to find the game number of the most recent league game
-latest_fixture = fixtures[fixtures.game_date <= today].ssn_comp_game_no.max()
+def get_match_list(html):
+    match_list = pd.read_html(html, parse_dates=["Date"])[0]
+    return match_list
 
-# # Filter the fixture list to find the games to be added to current_df
-dates_to_get = fixtures[(fixtures.ssn_comp_game_no > latest_game_no) & (fixtures.ssn_comp_game_no <= latest_fixture)].copy()
+def clean_match_list(match_list):
+    match_list.columns = match_list.columns.str.lower()
+    match_list = match_list.rename(columns = {"date": "game_date"})
+    match_list.game_date = match_list.game_date.dt.normalize()
+    return match_list
 
-if dates_to_get.empty:
-    print("No updates.")
-else:
-    dates_to_get = dates_to_get.sort_values("ssn_comp_game_no", ascending=False)
+def filter_match_list_to_league_two(match_list):
+    league_games = match_list[match_list.competition == "League Two"].reset_index(drop=True)
+    return league_games
 
-    # Find the day, month and year of missing fixture to help construct the 11v11 URL
-    dates_to_get["day"] = dates_to_get.game_date.dt.day
-    dates_to_get["month"] = dates_to_get.game_date.dt.month_name().str.lower()
-    dates_to_get["year"] = dates_to_get.game_date.dt.year
+def filter_played_games(match_list):
+    played_games = match_list[match_list.result.notnull()].reset_index(drop=True)
+    return played_games
 
-    # Construct the league table URL(s) to be scraped
-    def construct_url(day, month, year):
-        day = int(day)
-        if day < 10:
-            day = f'0{day}'
-        url = f"https://www.11v11.com/league-tables/league-two/{day}-{month}-{year}/"
-        return url
+def filter_missing_matches(match_list, df_max_date):
+    latest_game_date = match_list.game_date.max()
+    if latest_game_date > df_max_date:
+        new_matches = match_list[match_list.game_date > df_max_date].reset_index(drop=True)
+        return new_matches
+    else:
+        return None
 
-    # Add URLs to be scraped to dataframe and save as a list
-    dates_to_get['table_url'] = dates_to_get.apply(lambda row: construct_url(row.day, row.month, row.year), axis=1)
+def construct_url(date):
+    day = f"{date.day:02d}"
+    month = date.month_name().lower()
+    year = f"{date.year:04d}"
 
-    update_urls = dates_to_get.table_url.to_list()
+    url = f"https://www.11v11.com/league-tables/league-two/{day}-{month}-{year}/"
+    return url
 
-    updates_df = pd.DataFrame()
+def add_urls_to_new_matches(new_matches):
+    new_matches["url"] = new_matches.game_date.apply(construct_url)
+    return new_matches
 
-    # Scrape league table for each date
-    for url in update_urls:
-        try:    
-            r = requests.get(url, headers = headers)
+def get_urls_to_scrape(new_matches):
+    urls_to_scrape = new_matches.url.to_list()
+    return urls_to_scrape
 
-            table = pd.read_html(r.text)[0]
-            df = pd.DataFrame(table)
-            df = df[['Pos', 'Team', 'Pld', 'W', 'D', 'L', 'GF', 'GA', 'Pts']]
-            df['index_no'] = df.index + 1
-            df['url'] = url
-            updates_df = pd.concat([updates_df, df])
-        except:
-            logging.basicConfig(filename='error.log', encoding='utf-8', level=logging.DEBUG)
-            logging.warning('Failed trying to scrape %s', url)
+def scrape_league_table(url):
+    html = get_html(url)
+    league_table = pd.read_html(html)[0]
+    league_table["url"] = url
+    return league_table
 
+def clean_league_table(league_table):
+    league_table.columns = league_table.columns.str.lower()
+    league_table['gd'] = league_table.gf - league_table.ga
+    league_table['pts_and_goals'] = league_table[["pts", "gd", "gf"]].apply(tuple, axis=1)
+    league_table['ranking'] = league_table.groupby("url").pts_and_goals.rank("min", ascending=False)
+
+    league_table = league_table.query("team == 'Tranmere Rovers'")
+
+    league_table = league_table[["url", "ranking", "pld", "pts"]].reset_index(drop=True)
+
+    return league_table
+
+def get_manager_df():
+    managers_df = pd.read_html("https://www.soccerbase.com/teams/team.sd?team_id=2598&teamTabs=managers")[1].rename(columns = 
+    {
+        "Unnamed: 0": "manager_name",
+        "FROM": "manager_start_date",
+        "TO": "manager_end_date"
+        })
+    managers_df.manager_start_date = pd.to_datetime(managers_df.manager_start_date)
+    managers_df.manager_end_date = managers_df.apply(lambda x: pd.to_datetime("today") if x.manager_end_date == "Present" else pd.to_datetime(x.manager_end_date), axis=1)
+    return managers_df
+
+def find_manager_on_date(input_date):
+    managers_df = get_manager_df()
+    input_date = pd.Timestamp(input_date)
     try:
-        updates_df.Pos = updates_df.Pos.astype(str).str.replace("doRowNumer();", "", regex=False)
-    except AttributeError:
-        pass
+        manager_index = managers_df.apply(lambda x : (input_date >= x.manager_start_date) & (input_date <= x.manager_end_date), axis = 1)
+        manager = managers_df[manager_index].manager_name
+        manager = manager.squeeze()
+    except:
+        manager = 'Unknown'
+    return manager
+
+def add_manager_to_df(df):
+    df["manager"] = df.game_date.apply(find_manager_on_date)
+    return df
+
+def map_league_tier_to_comp(competition):
+    league_tiers = {
+        'National League': 5,
+        'Football Conference Play-off': 5,
+        'League Two': 4,
+        'League Two Play-Offs': 4,
+        'League One': 3,
+        'League One Play-Offs': 3
+    }
+    league_tier = league_tiers[competition]
+    return league_tier
+
+def add_league_tier_to_df(df):
+    df["league_tier"] = df.competition.apply(map_league_tier_to_comp)
+    return df
+
+def add_season_to_df(df, season_text):
+    df["season"] = season_text
+    return df
+
+results_df = get_results_df()  
+
+df_max_date = get_max_date_in_df(results_df)
+
+url = "https://www.11v11.com/teams/tranmere-rovers/tab/matches"
+
+html = get_html(url)
+doc = BeautifulSoup(html, "html.parser")
+season_text = doc.select_one("ul#season li.active a").text.replace("-", "/")
+ssn_match_list = get_match_list(html)
+ssn_match_list = clean_match_list(ssn_match_list)
+ssn_match_list = filter_match_list_to_league_two(ssn_match_list)
+ssn_match_list = filter_played_games(ssn_match_list)
+
+new_matches = filter_missing_matches(ssn_match_list, df_max_date)
+
+def compare_to_current_csv(new_matches):
+    current_csv = pd.read_csv("./docs/input/results_mini.csv", parse_dates = ["game_date"])
+    new_matches = new_matches.query("~game_date.isin(@current_csv.game_date)")
+    return new_matches
+
+new_matches = compare_to_current_csv(new_matches)
+
+if len(new_matches) > 0:
+    new_matches = add_urls_to_new_matches(new_matches)
+    new_matches = add_league_tier_to_df(new_matches)
+    new_matches = add_manager_to_df(new_matches)
+    new_matches = add_season_to_df(new_matches, season_text)
+
+    urls_to_scrape = get_urls_to_scrape(new_matches)
+
+    league_tables = pd.DataFrame()
+    for url in urls_to_scrape:
+        league_table = scrape_league_table(url)
+        league_table = clean_league_table(league_table)
+        league_tables = pd.concat([league_tables, league_table])
+
+    updates_df = league_tables.merge(new_matches, on = "url", how = "left")
 
     updates_df.columns = updates_df.columns.str.lower()
-    updates_df.url = updates_df.url.str.replace("/\n", "", regex=False)
-    updates_df['date'] = updates_df.url.str.split("/", regex=False).str[5].str.replace("-", " ")
-    updates_df.date = pd.to_datetime(updates_df.date)
-    updates_df['gd'] = updates_df.gf - updates_df.ga
-    updates_df['g_av'] = updates_df.gf / updates_df.ga
-    updates_df['pts_and_goals'] = updates_df[["pts", "gd", "gf"]].apply(tuple, axis=1)
-    updates_df['ranking'] = updates_df.groupby("url").pts_and_goals.rank("min", ascending=False)
-
-    updates_df = updates_df[["date", "pos", "ranking", "team", "pld", "w", "d", "l", "gf", "ga", "gd", "g_av", "pts"]]
-
-    trfc = updates_df[updates_df.team == 'Tranmere Rovers'].drop(["pos", "team"], axis=1).rename(columns = {"date": "game_date"})
-    results = pd.read_csv("https://raw.githubusercontent.com/petebrown/update-results/main/data/results_df.csv", parse_dates=["game_date"])
-    new_results = results.merge(trfc, on="game_date")
-    new_results = new_results.drop(['home_team',
-        'away_team',
-        'home_goals',
-        'away_goals',
-        'secondary_score',
-        'source_url',
-        'stadium',
-        'game_type'], axis=1)
-    new_results_mini = new_results[['season', 'competition', 'league_tier', 'ssn_comp_game_no', 'ranking', 'pld', 'pts', 'manager']]
-
-    updated_results_mini = pd.concat([new_results_mini, current_df])
-    updated_results_mini = updated_results_mini.drop_duplicates(ignore_index=True)
+    updates_df.game_date = updates_df.game_date.dt.date
+    updates_df = updates_df[["season", "competition", "league_tier", "ranking", "pld", "pts", "manager", "game_date"]].sort_values("pld", ascending = False).reset_index(drop =True)
+    
+    results_mini = pd.read_csv("./docs/input/results_mini.csv")
+    
+    updated_results_mini = pd.concat([updates_df, results_mini]).drop_duplicates(ignore_index=True)
 
     updated_results_mini.to_csv("./docs/input/results_mini.csv", index=False)
+else:
+    print("No new matches found")
