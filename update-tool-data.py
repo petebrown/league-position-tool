@@ -2,9 +2,9 @@ import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 
-def get_results_df():
-    results_df = pd.read_csv("https://raw.githubusercontent.com/petebrown/update-results/main/data/results_df.csv", parse_dates=["game_date"])
-    return results_df
+def get_current_df():
+    current_df = pd.read_csv("./docs/input/results_mini.csv", parse_dates=["game_date"])
+    return current_df
 
 def get_max_date_in_df(df):
     latest_game_date = df.game_date.max()
@@ -124,9 +124,13 @@ def add_season_to_df(df, season_text):
     df["season"] = season_text
     return df
 
-results_df = get_results_df()  
+def manually_update_manager(df):
+    df.loc[df.game_date > pd.to_datetime("2023-03-19").date(), "manager"] = "Ian Dawes"
+    return df
 
-df_max_date = get_max_date_in_df(results_df)
+current_df = get_current_df()  
+
+df_max_date = get_max_date_in_df(current_df)
 
 url = "https://www.11v11.com/teams/tranmere-rovers/tab/matches"
 
@@ -139,13 +143,6 @@ ssn_match_list = filter_match_list_to_league_two(ssn_match_list)
 ssn_match_list = filter_played_games(ssn_match_list)
 
 new_matches = filter_missing_matches(ssn_match_list, df_max_date)
-
-def compare_to_current_csv(new_matches):
-    current_csv = pd.read_csv("./docs/input/results_mini.csv", parse_dates = ["game_date"])
-    new_matches = new_matches.query("~game_date.isin(@current_csv.game_date)")
-    return new_matches
-
-new_matches = compare_to_current_csv(new_matches)
 
 if len(new_matches) > 0:
     new_matches = add_urls_to_new_matches(new_matches)
@@ -165,6 +162,7 @@ if len(new_matches) > 0:
 
     updates_df.columns = updates_df.columns.str.lower()
     updates_df.game_date = updates_df.game_date.dt.date
+    updates_df = manually_update_manager(updates_df)
     updates_df = updates_df[["season", "competition", "league_tier", "ranking", "pld", "pts", "manager", "game_date"]].sort_values("pld", ascending = False).reset_index(drop =True)
     
     results_mini = pd.read_csv("./docs/input/results_mini.csv")
