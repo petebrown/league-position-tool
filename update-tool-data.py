@@ -144,7 +144,7 @@ ssn_match_list = filter_played_games(ssn_match_list)
 
 new_matches = filter_missing_matches(ssn_match_list, df_max_date)
 
-if len(new_matches) > 0:
+if new_matches:
     new_matches = add_urls_to_new_matches(new_matches)
     new_matches = add_league_tier_to_df(new_matches)
     new_matches = add_manager_to_df(new_matches)
