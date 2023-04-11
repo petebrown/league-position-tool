@@ -37,12 +37,8 @@ def filter_played_games(match_list):
     return played_games
 
 def filter_missing_matches(match_list, df_max_date):
-    latest_game_date = match_list.game_date.max()
-    if latest_game_date > df_max_date:
-        new_matches = match_list[match_list.game_date > df_max_date].reset_index(drop=True)
-        return new_matches
-    else:
-        return None
+    new_matches = match_list[match_list.game_date > df_max_date].reset_index(drop=True)
+    return new_matches
 
 def construct_url(date):
     day = f"{date.day:02d}"
