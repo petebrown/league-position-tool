@@ -144,7 +144,9 @@ ssn_match_list = filter_played_games(ssn_match_list)
 
 new_matches = filter_missing_matches(ssn_match_list, df_max_date)
 
-if new_matches:
+if new_matches.empty:
+    print("No new matches found")
+else:
     new_matches = add_urls_to_new_matches(new_matches)
     new_matches = add_league_tier_to_df(new_matches)
     new_matches = add_manager_to_df(new_matches)
@@ -169,6 +171,4 @@ if new_matches:
     
     updated_results_mini = pd.concat([updates_df, results_mini]).drop_duplicates(ignore_index=True)
 
-    updated_results_mini.to_csv("./docs/input/results_mini.csv", index=False)
-else:
-    print("No new matches found")
+    updated_results_mini.to_csv("./docs/input/results_mini.csv", index=False)    
