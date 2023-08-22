@@ -53,7 +53,7 @@ d3.csv("./input/results_mini.csv", rowConverter)
 
 			if (selected_season == '2019/20') {
 				n_teams = 23;
-			} else if (selected_season == '2022/23') {
+			} else if (selected_season == '2023/24') {
 				n_teams = 24;
 			} else {
 				n_teams = (final_game[0].gameNo / 2) + 1;
